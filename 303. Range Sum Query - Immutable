@@ -1,0 +1,24 @@
+class NumArray {
+    int[] res;  // Array to store the running sum
+    
+    public NumArray(int[] nums) {
+        // Initialize the running sum array with the same length as the input nums array
+        this.res = new int[nums.length];
+        
+        // Base case: The first element of the running sum array is the same as the first element of the nums array
+        this.res[0] = nums[0];
+        
+        // Compute the running sum for the rest of the elements
+        for (int i = 1; i < nums.length; i++) {
+            // Each element in res[i] contains the sum of all elements in nums from 0 to i
+            this.res[i] = this.res[i - 1] + nums[i];
+        }
+    }
+    
+    public int sumRange(int left, int right) {
+        // If left > 0, return the sum from nums[left] to nums[right]
+        // This is calculated as res[right] - res[left - 1]
+        // If left == 0, we just return res[right], which is the sum from nums[0] to nums[right]
+        return left > 0 ? this.res[right] - this.res[left - 1] : this.res[right];
+    }
+}
