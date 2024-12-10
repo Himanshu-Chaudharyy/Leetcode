@@ -1,0 +1,23 @@
+class Solution {
+    public int findPoisonedDuration(int[] arr, int duration) {
+        // Get the length of the input array
+        int n  = arr.length;
+
+        // Initialize a variable to keep track of the overlapping time periods
+        int neg = 0;
+
+        // Loop through the array, comparing each element with the next
+        for (int i = 0; i < n - 1; i++) {
+            // Check if the gap between consecutive elements is less than the poison duration
+            if ((arr[i + 1] - arr[i]) < duration) {
+                // If yes, then there's an overlap, so subtract the time gap from the total duration
+                neg += duration - (arr[i + 1] - arr[i]);
+            }
+        }
+
+        // Calculate the total poisoned duration:
+        // - Multiply the number of elements (n) by the poison duration.
+        // - Subtract the overlap time (neg) to avoid double-counting the poisoned time.
+        return (n) * duration - neg;
+    }
+}
