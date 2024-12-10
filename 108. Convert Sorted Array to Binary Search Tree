@@ -1,0 +1,32 @@
+class Solution {
+    // Main method to convert sorted array to a balanced BST
+    public TreeNode sortedArrayToBST(int[] nums) {
+        // Call the helper function to construct the BST starting from the whole array
+        return findans(nums, 0, nums.length - 1);
+    }
+    
+    // Helper method to recursively construct the BST
+    private TreeNode findans(int[] nums, int left, int right) {
+        // Base case: when the left index exceeds the right index, return null (no subtree)
+        if (right < left) return null;
+  
+        // Find the middle index of the current subarray
+        int mid = (left + right) / 2;
+        
+        // Create a new node with the value at the middle index
+        TreeNode root = new TreeNode(nums[mid]);
+        
+        // Recursively build the left subtree by considering the left subarray
+        TreeNode leftSubtree = findans(nums, left, mid - 1);
+        
+        // Recursively build the right subtree by considering the right subarray
+        TreeNode rightSubtree = findans(nums, mid + 1, right);
+        
+        // After recursion, link the left and right subtrees to the current root node
+        root.left = leftSubtree;
+        root.right = rightSubtree;
+        
+        // Return the root node of the current subtree
+        return root;
+    }
+}
