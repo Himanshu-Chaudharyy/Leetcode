@@ -1,0 +1,17 @@
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        // Step 1: Sort the array
+        Arrays.sort(nums);
+        
+        // Step 2: Iterate through the array to check for duplicates
+        for (int i = 1; i < nums.length; i++) {
+            // If the current element is equal to the previous element, we found a duplicate
+            if (nums[i] == nums[i - 1]) {
+                return true;
+            }
+        }
+        
+        // Step 3: If no duplicates were found, return false
+        return false;        
+    }
+}
