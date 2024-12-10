@@ -1,0 +1,34 @@
+import java.util.*;
+
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        // Initialize a list to hold the result (Pascal's triangle)
+        List<List<Integer>> pascal = new ArrayList<>();
+        
+        // Iterate through each row
+        for (int i = 0; i < numRows; i++) {
+            // Create a new list for the current row
+            List<Integer> row = new ArrayList<>();
+            
+            // First element is always 1
+            row.add(1);
+            
+            // Fill in the middle values of the row
+            for (int j = 1; j < i; j++) {
+                // Each element is the sum of the two elements above it
+                row.add(pascal.get(i - 1).get(j - 1) + pascal.get(i - 1).get(j));
+            }
+            
+            // Last element is always 1 (except for the first row)
+            if (i > 0) {
+                row.add(1);
+            }
+            
+            // Add the current row to the Pascal's triangle
+            pascal.add(row);
+        }
+        
+        // Return the final list of rows as the Pascal's Triangle
+        return pascal;
+    }
+}
