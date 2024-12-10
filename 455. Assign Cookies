@@ -1,0 +1,26 @@
+class Solution {
+    public int findContentChildren(int[] g, int[] s) {
+        // Sort both arrays
+        Arrays.sort(g); // Sort the children's greed factors
+        Arrays.sort(s); // Sort the sizes of the cookies
+
+        // Initialize two pointers: one for children and one for cookies
+        int gpointer = 0, cpointer = 0, count = 0;
+
+        // Traverse the arrays while there are both children and cookies left
+        while (gpointer < g.length && cpointer < s.length) {
+            // If the current cookie can satisfy the current child
+            if (g[gpointer] <= s[cpointer]) {
+                count++;  // A child is content, so increase the count
+                gpointer++;  // Move to the next child
+                cpointer++;  // Use the next cookie
+            } else {
+                // Otherwise, move to the next cookie
+                cpointer++;
+            }
+        }
+
+        // Return the total number of content children
+        return count;
+    }
+}
