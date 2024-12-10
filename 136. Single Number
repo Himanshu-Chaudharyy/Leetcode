@@ -1,0 +1,17 @@
+public class Solution {
+    public int singleNumber(int[] nums) {
+        // Initialize result variable to 0. This will hold the final answer.
+        int result = 0;
+
+        // Iterate through each number in the nums array
+        for (int num : nums) {
+            // XOR the result with the current number.
+            // The XOR operation will cancel out duplicate numbers (because a^a = 0),
+            // leaving the single number that appears only once.
+            result ^= num;
+        }
+
+        // Return the final result, which will be the single number that appears only once
+        return result;
+    }
+}
