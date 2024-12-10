@@ -1,0 +1,22 @@
+class Solution {
+    public int thirdMax(int[] nums) {
+        // Sort the array in ascending order
+        Arrays.sort(nums);
+
+        int n = nums.length, cnt = 1;  // n is the size of the array, cnt counts distinct numbers
+
+        // Start iterating from the second-to-last element in the array
+        for (int i = n - 1; i >= 1; i--) {
+            // If the current number is not equal to the previous number, we found a new distinct number
+            if (nums[i] != nums[i - 1]) 
+                cnt++;  // Increment the distinct count
+
+            // If we've found the third distinct number, return it
+            if (cnt == 3)
+                return nums[i - 1];
+        }
+
+        // If there are fewer than 3 distinct numbers, return the maximum number
+        return nums[n - 1];
+    }
+}
