@@ -1,0 +1,36 @@
+class Solution {
+    
+    /***
+     *  The logic behind generating each row of Pascal's Triangle is based on binomial coefficients (combinations).
+     *  The `nCk` represents the binomial coefficient for row `n` and column `k`.
+     *  Formula for `nCk` is: n! / (k! * (n-k)!)
+     *  
+     *  Instead of calculating factorials directly, we use a recurrence relationship to generate each element.
+     *  This allows us to compute each row iteratively, avoiding large factorials.
+     *
+     *  The recurrence relation is:
+     *  - If we know `nCk`, then `nC(k+1) = nCk * (n - k) / (k + 1)`
+     *  
+     *  So, we start with `1` (which is `nC0`) and compute the next elements by multiplying by `(n - k) / (k + 1)` for each subsequent element.
+     */
+    public List<Integer> getRow(int i) {
+        // List to store the row of Pascal's Triangle
+        List<Integer> result = new ArrayList<>();
+        
+        // Start with the first element, which is always 1 (nC0 = 1)
+        long val = 1;
+
+        // Generate the row elements from index 0 to i
+        for (int j = 0; j <= i; j++) {
+            // Add the current element to the result list
+            result.add((int) val);
+            
+            // Calculate the next element using the recurrence relation
+            // val = val * (i - j) / (j + 1) gives us the next binomial coefficient
+            val = val * (i - j) / (j + 1);
+        }
+        
+        // Return the generated row
+        return result;
+    }
+}
