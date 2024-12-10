@@ -1,0 +1,26 @@
+class Solution {
+    public int majorityElement(int[] nums) {
+        // Initialize count and the majority element candidate
+        int count = 0, maxElement = 0;
+        
+        // Iterate through each number in the array
+        for (int num : nums) {
+            // If the count is zero, we set the current number as the new candidate
+            if (count == 0) {
+                maxElement = num;
+            }
+            
+            // If the current number matches the candidate, increment the count
+            if (num == maxElement) {
+                count++;
+            } 
+            // If the current number doesn't match the candidate, decrement the count
+            else {
+                count--;
+            }
+        }
+
+        // Return the candidate as the majority element
+        return maxElement;
+    }
+}
